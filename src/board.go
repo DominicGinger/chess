@@ -7,12 +7,14 @@ import (
 var xAxis = "ABCDEFGH"
 var yAxis = [...]int{1, 2, 3, 4, 5, 6, 7, 8}
 
+// Square - a single square on a chess board
 type Square struct {
 	coloured bool
 	x        byte
 	y        int
 }
 
+// Board - a chess board
 type Board struct {
 	rows [8][8]Square
 }
@@ -36,7 +38,7 @@ func (b *Board) print() {
 		fmt.Printf("\n%d ", b.rows[i][0].y)
 		for _, s := range b.rows[i] {
 			if s.coloured {
-				fmt.Printf("■♔ ■")
+				fmt.Printf("■■■■")
 			} else {
 				fmt.Printf("□□□□")
 			}
@@ -65,9 +67,4 @@ func newBoard() (board Board) {
 		}
 	}
 	return
-}
-
-func main() {
-	board := newBoard()
-	board.print()
 }

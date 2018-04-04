@@ -13,7 +13,7 @@ type Square struct {
 	x        byte
 	y        int
 	occupied bool
-	piece    Piece
+	piece    ChessPiece
 }
 
 // Board - a chess board
@@ -41,13 +41,13 @@ func (b *Board) print() {
 		for _, s := range b.rows[i] {
 			if s.coloured {
 				if s.occupied {
-					fmt.Printf("■" + s.piece.symbol + " ■")
+					fmt.Printf("■" + s.piece.getSymbol() + " ■")
 				} else {
 					fmt.Printf("■■■■")
 				}
 			} else {
 				if s.occupied {
-					fmt.Printf("□" + s.piece.symbol + " □")
+					fmt.Printf("□" + s.piece.getSymbol() + " □")
 				} else {
 					fmt.Printf("□□□□")
 				}
@@ -66,7 +66,7 @@ func (b *Board) print() {
 	}
 }
 
-func (b *Board) addPiece(x int, y int, p Piece) {
+func (b *Board) addPiece(x int, y int, p ChessPiece) {
 	b.rows[y][x].occupied = true
 	b.rows[y][x].piece = p
 }
@@ -77,7 +77,7 @@ func newBoard() (board Board) {
 	for i := range board.rows {
 		coloured = !coloured
 		for j := range board.rows[i] {
-			board.rows[i][j] = Square{coloured, xAxis[j], 9 - yAxis[i], false, Piece{}}
+			board.rows[i][j] = Square{coloured: coloured, x: xAxis[j], y: 9 - yAxis[i], occupied: false}
 			coloured = !coloured
 		}
 	}

@@ -7,11 +7,11 @@ import (
 func main() {
 	board := newBoard()
 	for i := 0; i < 8; i++ {
-		board.addPiece(i, 1, newPawn(true))
-		board.addPiece(i, 6, newPawn(false))
+		board.addPiece(i, 1, &Pawn{true})
+		board.addPiece(i, 6, &Pawn{false})
 	}
 
-	fmt.Println(board.rows[0][1].piece.validMove(move{0, 1}, move{0, 2}))
+	fmt.Println(board.rows[1][0].piece.validMove(move{1, 0}, move{3, 0}))
 	// type placement struct {
 	// 	y int
 	// 	coloured bool

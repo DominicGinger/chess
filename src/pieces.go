@@ -21,16 +21,21 @@ func getSymbol(idx int, coloured bool) string {
 	}
 }
 
-type Pawn struct {
+type Piece struct {
 	coloured bool
 }
 
-func (p *Pawn) getColoured() bool {
+func (p *Piece) getColoured() bool {
 	return p.coloured
 }
 
-func (p *Pawn) getSymbol() string {
+func (p *Piece) getSymbol() string {
 	return getSymbol(0, p.coloured)
+}
+
+
+type Pawn struct {
+	Piece
 }
 
 func (p *Pawn) validMove(from, to move) bool {
@@ -46,6 +51,7 @@ func (p *Pawn) validMoves(from move) []move {
 		move{from.x, from.y + 2},
 	}
 }
+
 
 
 // func newKnight(coloured bool) (p Piece) {

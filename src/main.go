@@ -7,8 +7,8 @@ import (
 func main() {
 	board := newBoard()
 	for i := 0; i < 8; i++ {
-		board.addPiece(i, 1, &Pawn{true})
-		board.addPiece(i, 6, &Pawn{false})
+		board.addPiece(i, 1, &Pawn{Piece{true}})
+		board.addPiece(i, 6, &Pawn{Piece{false}})
 	}
 
 	fmt.Println(board.rows[1][0].piece.validMove(move{0, 1}, move{0, 3}))

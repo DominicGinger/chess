@@ -1,15 +1,15 @@
 package main
 
 type move struct {
-	y int
 	x int
+	y int
 }
 
 type ChessPiece interface {
 	getColoured() bool
 	getSymbol() string 
 	validMove(from, to move) bool
-	// validMoves(m move) []move
+	validMoves(m move) []move
 }
 
 var symbols = [...]string{"♙", "♟", "♘", "♞", "♗", "♝", "♖", "♜", "♕", "♛", "♔", "♚"}
@@ -25,6 +25,14 @@ type Pawn struct {
 	coloured bool
 }
 
+func (p *Pawn) getColoured() bool {
+	return p.coloured
+}
+
+func (p *Pawn) getSymbol() string {
+	return getSymbol(0, p.coloured)
+}
+
 func (p *Pawn) validMove(from, to move) bool {
 	if p.coloured {
 		return to.y == from.y + 1 || to.y == from.y + 2
@@ -32,12 +40,11 @@ func (p *Pawn) validMove(from, to move) bool {
 	return to.y == from.y - 1 || to.y == from.y - 2
 }
 
-func (p *Pawn) getColoured() bool {
-	return p.coloured
-}
-
-func (p *Pawn) getSymbol() string {
-	return getSymbol(0, p.coloured)
+func (p *Pawn) validMoves(from move) []move {
+	return []move{
+		move{from.x, from.y + 1},
+		move{from.x, from.y + 2},
+	}
 }
 
 

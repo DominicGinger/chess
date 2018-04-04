@@ -11,7 +11,8 @@ func main() {
 		board.addPiece(i, 6, &Pawn{false})
 	}
 
-	fmt.Println(board.rows[1][0].piece.validMove(move{1, 0}, move{3, 0}))
+	fmt.Println(board.rows[1][0].piece.validMove(move{0, 1}, move{0, 3}))
+	fmt.Println(board.rows[1][4].piece.validMoves(move{4, 1}))
 	// type placement struct {
 	// 	y int
 	// 	coloured bool

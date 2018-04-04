@@ -29,13 +29,12 @@ func (p *Piece) getColoured() bool {
 	return p.coloured
 }
 
-func (p *Piece) getSymbol() string {
-	return getSymbol(0, p.coloured)
-}
-
-
 type Pawn struct {
 	Piece
+}
+
+func (p *Pawn) getSymbol() string {
+	return getSymbol(0, p.coloured)
 }
 
 func (p *Pawn) validMove(from, to move) bool {
@@ -52,6 +51,25 @@ func (p *Pawn) validMoves(from move) []move {
 	}
 }
 
+type Knight struct {
+	Piece
+}
+
+func (p *Knight) getSymbol() string {
+	return getSymbol(2, p.coloured)
+}
+
+func (_ *Knight) validMove(from, to move) bool {
+	return ((to.y == from.y + 2 || to.y == from.y - 2) && (to.x == from.x + 1 || to.x == from.x - 1)) ||
+		((to.x == from.x + 2 || to.x == from.x - 2) && (to.y == from.y + 1 || to.y == from.y - 1))
+}
+
+func (_ *Knight) validMoves(from move) []move {
+	return []move{
+		move{from.x, from.y + 1},
+		move{from.x, from.y + 2},
+	}
+}
 
 
 // func newKnight(coloured bool) (p Piece) {
